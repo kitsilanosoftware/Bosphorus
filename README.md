@@ -15,3 +15,15 @@ Test cases
 ==========
 https://github.com/kitsilanostealth/Disunity.Bootcamp - from http://u3d.as/content/unity-technologies/bootcamp/28W
 https://github.com/kitsilanostealth/Disunity.RobotLab - from https://www.assetstore.unity3d.com/en/#!/content/7006
+
+
+Phase I
+=======
+Attempt to load the data for ANY Unity project, so we can get a grasp on the complexity of the data schema.
+
+Phase II
+========
+Attempt to build an alternative implementation of a key subset of the core runtime functionality.
+Maybe MonoBehaviour and Object, for example?
+How do Unity Coroutines map onto C# 5.0 async?
+
