@@ -2,9 +2,21 @@
 using System.IO;
 using YamlDotNet.Core;
 using YamlDotNet.RepresentationModel;
+using YamlDotNet.Serialization;
+using YamlDotNet.Core.Events;
 
 namespace Disunity.Loader
 {
+	public class SceneSettings
+	{
+		public int m_ObjectHideFlags { get; set; }
+	}
+
+	public class Top
+	{
+		public SceneSettings SceneSettings { get; set; }
+	}
+
 	public class Loader
 	{
 		public Loader ()
@@ -14,11 +26,15 @@ namespace Disunity.Loader
 		public static void Main (string[] args)
 		{
 			var stream = File.OpenText (args [0]);
+			var reader = new EventReader(new Parser(stream));
+			var deserializer = new Deserializer (ignoreUnmatched: true);
 
-			var yaml = new YamlStream();
-			yaml.Load(stream);
+			deserializer.RegisterTagMapping ("tag:unity3d.com,2011:29", typeof (Top));
 
-			Console.WriteLine ("Done, loaded {0} documents.", yaml.Documents.Count);
+			reader.Allow<StreamStart> ();
+			var something = deserializer.Deserialize<Top> (reader);
+
+			Console.WriteLine ("Done, deserialized {0}.", something);
 		}
 	}
 }
