@@ -39,5 +39,9 @@
       <Project>{BF32DE1B-6276-4341-B212-F8862ADBBA7A}</Project>
       <Name>YamlDotNet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\external\Disunity.UnityEngine\Disunity.UnityEngine\Disunity.UnityEngine.csproj">
+      <Project>{013089B6-34EA-4644-978A-66F6EDC2D280}</Project>
+      <Name>Disunity.UnityEngine</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
