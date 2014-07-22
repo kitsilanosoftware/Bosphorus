@@ -1,3 +1,6 @@
 [submodule "external/YamlDotNet"]
 	path = external/YamlDotNet
 	url = git@github.com:kitsilanosoftware/YamlDotNet.git
+[submodule "Disunity.UnityEngine"]
+	path = external/Disunity.UnityEngine
+	url = git@github.com:kitsilanostealth/Disunity.UnityEngine.git
