@@ -4,6 +4,10 @@ using YamlDotNet.Core;
 using YamlDotNet.RepresentationModel;
 using YamlDotNet.Serialization;
 using YamlDotNet.Core.Events;
+using YamlDotNet.Serialization.TypeResolvers;
+using YamlDotNet.Serialization.TypeInspectors;
+using YamlDotNet.Serialization.NamingConventions;
+using Disunity.UnityEngine;
 
 namespace Disunity.Loader
 {
@@ -158,6 +162,21 @@ namespace Disunity.Loader
 			deserializer.RegisterTagMapping ("tag:unity3d.com,2011:104", typeof (Top));
 			deserializer.RegisterTypeConverter (new BoolConverter ());
 
+			var typeResolver = new StaticTypeResolver();
+
+			deserializer.TypeDescriptor =
+				new YamlAttributesTypeInspector(
+					new NamingConventionTypeInspector(
+						new ReadableAndWritablePropertiesTypeInspector(
+							new SelectManyTypeInspector(
+								new ReadablePropertiesTypeInspector(typeResolver),
+								new FieldsTypeInspector(typeResolver)
+							)
+						),
+						new NullNamingConvention()
+					)
+				);
+
 			reader.Allow<StreamStart> ();
 			if (reader.Accept<DocumentStart> ())
 			{
@@ -169,9 +188,11 @@ namespace Disunity.Loader
 			var something = deserializer.Deserialize<Top> (reader);
 
 			Console.WriteLine ("Deserialized {0}.", something);
+			Console.WriteLine ("\tambientLight: {0}", something.RenderSettings.ambientLight);
 			Console.WriteLine ("\tflareFadeSpeed: {0}", something.RenderSettings.flareFadeSpeed);
 			Console.WriteLine ("\tflareStrength: {0}", something.RenderSettings.flareStrength);
 			Console.WriteLine ("\tfog: {0}", something.RenderSettings.fog);
+			Console.WriteLine ("\tfogColor: {0}", something.RenderSettings.fogColor);
 			Console.WriteLine ("\tfogDensity: {0}", something.RenderSettings.fogDensity);
 			Console.WriteLine ("\tfogEndDistance: {0}", something.RenderSettings.fogEndDistance);
 			Console.WriteLine ("\tfogStartDistance: {0}", something.RenderSettings.fogStartDistance);
