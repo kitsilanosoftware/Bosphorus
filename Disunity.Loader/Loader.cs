@@ -152,6 +152,16 @@ namespace Disunity.Loader
 			tagMapping.Add(UnityPrefix + "1", typeof(GameObject));
 			tagMapping.Add(UnityPrefix + "4", typeof(Transform));
 			tagMapping.Add(UnityPrefix + "23", typeof(Renderer));
+			tagMapping.Add(UnityPrefix + "33", typeof(MeshFilter));
+			tagMapping.Add(UnityPrefix + "199", typeof(ParticleSystemRenderer));
+			tagMapping.Add(UnityPrefix + "198", typeof(ParticleSystem));
+			tagMapping.Add(UnityPrefix + "108", typeof(Light));
+			tagMapping.Add(UnityPrefix + "111", typeof(Animation));
+			tagMapping.Add(UnityPrefix + "114", typeof(MonoBehaviour));
+			tagMapping.Add(UnityPrefix + "220", typeof(LightProbeGroup));
+			tagMapping.Add(UnityPrefix + "20", typeof(Camera));
+			tagMapping.Add(UnityPrefix + "64", typeof(MeshCollider));
+			tagMapping.Add(UnityPrefix + "81", typeof(AudioListener));
 		}
 
 		private Deserializer CreateDeserializer ()
