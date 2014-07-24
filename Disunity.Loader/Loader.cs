@@ -195,6 +195,8 @@ namespace Disunity.Loader
 
 		public void Load (string filename)
 		{
+			var knownUnknowns = new Dictionary<string,int>();
+
 			using (var stream = File.OpenText (filename))
 			{
 				var reader = new EventReader (new Parser (stream));
@@ -212,17 +214,24 @@ namespace Disunity.Loader
 					{
 						var thing = deserializer.Deserialize<Disunity.UnityEngine.Object> (reader);
 
-						Console.WriteLine("Thing: {0}", thing);
+						Console.WriteLine("Deserialized: {0}", thing);
 					}
 					else
 					{
-						Console.WriteLine("Skipping tag: {0}", tag);
+						int count;
+						knownUnknowns.TryGetValue(tag, out count);
+						knownUnknowns[tag] = count + 1;
 
 						reader.SkipThisAndNestedEvents();
 					}
 
 					reader.Allow<DocumentEnd>();
 				}
+			}
+
+			foreach(var pair in knownUnknowns)
+			{
+				Console.WriteLine("Skipped unknown tag {0} {1} time(s)", pair.Key, pair.Value);
 			}
 		}
 
