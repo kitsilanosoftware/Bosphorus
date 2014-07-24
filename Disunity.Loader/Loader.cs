@@ -148,6 +148,10 @@ namespace Disunity.Loader
 		public Loader ()
 		{
 			tagMapping.Add(UnityPrefix + "104", typeof(RenderSettings));
+			tagMapping.Add(UnityPrefix + "157", typeof(LightmapSettings));
+			tagMapping.Add(UnityPrefix + "1", typeof(GameObject));
+			tagMapping.Add(UnityPrefix + "4", typeof(Transform));
+			tagMapping.Add(UnityPrefix + "23", typeof(Renderer));
 		}
 
 		private Deserializer CreateDeserializer ()
