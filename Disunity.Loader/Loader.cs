@@ -147,21 +147,37 @@ namespace Disunity.Loader
 
 		public Loader ()
 		{
-			tagMapping.Add(UnityPrefix + "104", typeof(RenderSettings));
-			tagMapping.Add(UnityPrefix + "157", typeof(LightmapSettings));
 			tagMapping.Add(UnityPrefix + "1", typeof(GameObject));
 			tagMapping.Add(UnityPrefix + "4", typeof(Transform));
+			tagMapping.Add(UnityPrefix + "20", typeof(Camera));
 			tagMapping.Add(UnityPrefix + "23", typeof(Renderer));
+			//tagMapping.Add(UnityPrefix + "29", typeof(SceneSettings));
 			tagMapping.Add(UnityPrefix + "33", typeof(MeshFilter));
-			tagMapping.Add(UnityPrefix + "199", typeof(ParticleSystemRenderer));
-			tagMapping.Add(UnityPrefix + "198", typeof(ParticleSystem));
+			//50 - Rigidbody2D
+			//58 - CircleCollider2D
+			//60 - PolygonCollider2D
+			//61 - BoxCollider2D
+			tagMapping.Add(UnityPrefix + "64", typeof(MeshCollider));
+			tagMapping.Add(UnityPrefix + "81", typeof(AudioListener));
+			//82 - AudioSource
+			//92 - Behaviour
+			//95 - Animator
+			tagMapping.Add(UnityPrefix + "104", typeof(RenderSettings));
 			tagMapping.Add(UnityPrefix + "108", typeof(Light));
 			tagMapping.Add(UnityPrefix + "111", typeof(Animation));
 			tagMapping.Add(UnityPrefix + "114", typeof(MonoBehaviour));
+			//124 - Behaviour
+			//tagMapping.Add(UnityPrefix + "127", typeof(LevelGameManager));
+			//131 - GUITexture
+			//132 - GUIText
+			tagMapping.Add(UnityPrefix + "157", typeof(LightmapSettings));
+			//tagMapping.Add(UnityPrefix + "196", typeof(NavMeshSettings));
+			tagMapping.Add(UnityPrefix + "198", typeof(ParticleSystem));
+			tagMapping.Add(UnityPrefix + "199", typeof(ParticleSystemRenderer));
+			//212 - SpriteRenderer
 			tagMapping.Add(UnityPrefix + "220", typeof(LightProbeGroup));
-			tagMapping.Add(UnityPrefix + "20", typeof(Camera));
-			tagMapping.Add(UnityPrefix + "64", typeof(MeshCollider));
-			tagMapping.Add(UnityPrefix + "81", typeof(AudioListener));
+			//tagMapping.Add(UnityPrefix + "1001", typeof(Prefab));
+
 		}
 
 		private Deserializer CreateDeserializer ()
@@ -250,6 +266,8 @@ namespace Disunity.Loader
 			var loader = new Loader();
 
 			loader.Load(args[0]);
+
+			loader = null;
 		}
 	}
 }
