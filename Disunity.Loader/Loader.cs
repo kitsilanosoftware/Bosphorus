@@ -7,7 +7,7 @@ using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization.TypeResolvers;
 using YamlDotNet.Serialization.TypeInspectors;
 using YamlDotNet.Serialization.NamingConventions;
-using Disunity.UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using YamlDotNet.Serialization.Utilities;
 using YamlDotNet.Serialization.ObjectFactories;
@@ -78,7 +78,7 @@ namespace Disunity.Loader
 		bool INodeDeserializer.Deserialize(EventReader reader, Type expectedType,
 						   Func<EventReader, Type, object> nestedObjectDeserializer, out object value)
 		{
-			if (!expectedType.IsSubclassOf(typeof(Disunity.UnityEngine.Object)))
+			if (!expectedType.IsSubclassOf(typeof(UnityEngine.Object)))
 			{
 				value = null;
 				return false;
@@ -222,7 +222,7 @@ namespace Disunity.Loader
 
 					if (tagMapping.ContainsKey(tag))
 					{
-						var thing = deserializer.Deserialize<Disunity.UnityEngine.Object> (reader);
+						var thing = deserializer.Deserialize<UnityEngine.Object> (reader);
 
 						Console.WriteLine("Deserialized: {0}", thing);
 					}

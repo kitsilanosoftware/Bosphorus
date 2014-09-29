@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Disunity.Loader", "Disunity.Loader\Disunity.Loader.csproj", "{8933A7A4-BB6C-41DE-8A5C-FA1E56F859E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YamlDotNet", "external\YamlDotNet\YamlDotNet\YamlDotNet.csproj", "{BF32DE1B-6276-4341-B212-F8862ADBBA7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BosphorusEngine", "..\BosphorusEngine\BosphorusEngine.csproj", "{013089B6-34EA-4644-978A-66F6EDC2D280}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Disunity.UnityEngine", "external\Disunity.UnityEngine\Disunity.UnityEngine\Disunity.UnityEngine.csproj", "{013089B6-34EA-4644-978A-66F6EDC2D280}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YamlDotNet", "..\YamlDotNet\YamlDotNet\YamlDotNet.csproj", "{BF32DE1B-6276-4341-B212-F8862ADBBA7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
