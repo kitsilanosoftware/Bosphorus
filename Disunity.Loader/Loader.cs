@@ -154,10 +154,13 @@ namespace Disunity.Loader
 			//tagMapping.Add(UnityPrefix + "29", typeof(SceneSettings));
 			tagMapping.Add(UnityPrefix + "33", typeof(MeshFilter));
 			//50 - Rigidbody2D
+			//54 - Rigidbody
 			//58 - CircleCollider2D
+			//59 - HingeJoint
 			//60 - PolygonCollider2D
 			//61 - BoxCollider2D
 			tagMapping.Add(UnityPrefix + "64", typeof(MeshCollider));
+			//65 - BoxCollider
 			tagMapping.Add(UnityPrefix + "81", typeof(AudioListener));
 			//82 - AudioSource
 			//92 - Behaviour
@@ -170,10 +173,15 @@ namespace Disunity.Loader
 			//tagMapping.Add(UnityPrefix + "127", typeof(LevelGameManager));
 			//131 - GUITexture
 			//132 - GUIText
+			//135 - SphereCollider
+			//136 - CapsuleCollider
+			//137 - SkinnedMeshRenderer
 			tagMapping.Add(UnityPrefix + "157", typeof(LightmapSettings));
+			//195 - NavMeshAgent
 			//tagMapping.Add(UnityPrefix + "196", typeof(NavMeshSettings));
 			tagMapping.Add(UnityPrefix + "198", typeof(ParticleSystem));
 			tagMapping.Add(UnityPrefix + "199", typeof(ParticleSystemRenderer));
+			//208 - NavMeshObstacle
 			//212 - SpriteRenderer
 			tagMapping.Add(UnityPrefix + "220", typeof(LightProbeGroup));
 			//tagMapping.Add(UnityPrefix + "1001", typeof(Prefab));
