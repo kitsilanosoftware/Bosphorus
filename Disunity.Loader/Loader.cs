@@ -147,11 +147,12 @@ namespace Disunity.Loader
 
 		public Loader ()
 		{
+			// See http://docs.unity3d.com/410/Documentation/Manual/ClassIDReference.html
 			tagMapping.Add(UnityPrefix + "1", typeof(GameObject));
 			tagMapping.Add(UnityPrefix + "4", typeof(Transform));
 			tagMapping.Add(UnityPrefix + "20", typeof(Camera));
 			tagMapping.Add(UnityPrefix + "23", typeof(Renderer));
-			//tagMapping.Add(UnityPrefix + "29", typeof(SceneSettings));
+			tagMapping.Add(UnityPrefix + "29", typeof(SceneSettings));
 			tagMapping.Add(UnityPrefix + "33", typeof(MeshFilter));
 			//50 - Rigidbody2D
 			//54 - Rigidbody
