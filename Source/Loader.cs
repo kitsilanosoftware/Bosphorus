@@ -1,19 +1,32 @@
-﻿using System;
-using System.IO;
-using YamlDotNet.Core;
-using YamlDotNet.RepresentationModel;
-using YamlDotNet.Serialization;
-using YamlDotNet.Core.Events;
-using YamlDotNet.Serialization.TypeResolvers;
-using YamlDotNet.Serialization.TypeInspectors;
-using YamlDotNet.Serialization.NamingConventions;
-using UnityEngine;
+﻿//------------------------------------------------------------------------------
+// Loader.cs
+//
+// This file is part of the Bosphorus project.
+//
+// See http://bosphorusengine.com for more details on Bosphorus.
+//
+// Copyright (c) 2014 Kitsilano Software Inc (http://kitsilanosoftware.com)
+//------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
-using YamlDotNet.Serialization.Utilities;
-using YamlDotNet.Serialization.ObjectFactories;
+using System.IO;
 using System.Runtime.Serialization;
 
-namespace Disunity.Loader
+using UnityEngine;
+
+using YamlDotNet.Core;
+using YamlDotNet.Core.Events;
+using YamlDotNet.RepresentationModel;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
+using YamlDotNet.Serialization.TypeInspectors;
+using YamlDotNet.Serialization.TypeResolvers;
+using YamlDotNet.Serialization.Utilities;
+using YamlDotNet.Serialization.ObjectFactories;
+
+
+namespace BosphorusLoader
 {
 	public sealed class BoolConverter : IYamlTypeConverter
 	{
@@ -75,7 +88,7 @@ namespace Disunity.Loader
 			}
 		}
 
-		bool INodeDeserializer.Deserialize(EventReader reader, Type expectedType,
+		public bool Deserialize(EventReader reader, Type expectedType,
 						   Func<EventReader, Type, object> nestedObjectDeserializer, out object value)
 		{
 			if (!expectedType.IsSubclassOf(typeof(UnityEngine.Object)))
@@ -90,6 +103,8 @@ namespace Disunity.Loader
 			//     RenderSettings:
 			//       m_Fog: 1
 			//       ...
+			//
+			// TODO - Ask Damien what exactly this comment is talking about.
 			var mapping = reader.Allow<MappingStart>();
 			if (mapping == null)
 			{
@@ -171,7 +186,7 @@ namespace Disunity.Loader
 			tagMapping.Add(UnityPrefix + "111", typeof(Animation));
 			tagMapping.Add(UnityPrefix + "114", typeof(MonoBehaviour));
 			//124 - Behaviour
-			//tagMapping.Add(UnityPrefix + "127", typeof(LevelGameManager));
+			tagMapping.Add(UnityPrefix + "127", typeof(LevelGameManager));
 			//131 - GUITexture
 			//132 - GUIText
 			//135 - SphereCollider
