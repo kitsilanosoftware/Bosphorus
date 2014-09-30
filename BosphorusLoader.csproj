@@ -7,8 +7,6 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Disunity.Loader</RootNamespace>
     <AssemblyName>Disunity.Loader</AssemblyName>
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -20,6 +18,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <Commandlineparameters>/Users/bob/SourceTreeProjects/EmptyUnity2DProject/Assets/Scenes/EmptyScene.unity</Commandlineparameters>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -38,13 +37,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\YamlDotNet\YamlDotNet\YamlDotNet.csproj">
-      <Project>{BF32DE1B-6276-4341-B212-F8862ADBBA7A}</Project>
-      <Name>YamlDotNet</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\BosphorusEngine\BosphorusEngine.csproj">
+    <ProjectReference Include="..\BosphorusEngine\BosphorusEngine.csproj">
       <Project>{013089B6-34EA-4644-978A-66F6EDC2D280}</Project>
       <Name>BosphorusEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YamlDotNet\YamlDotNet\YamlDotNet.csproj">
+      <Project>{BF32DE1B-6276-4341-B212-F8862ADBBA7A}</Project>
+      <Name>YamlDotNet</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
