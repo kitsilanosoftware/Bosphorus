@@ -63,6 +63,109 @@ namespace BosphorusLoader
 		}
 	}
 
+	public sealed class ComponentListConverter : IYamlTypeConverter
+	{
+		public bool Accepts (Type type)
+		{
+			return type == typeof (ComponentList);
+		}
+
+		public object ReadYaml (IParser parser, Type type)
+		{
+			var result = new ComponentList();
+
+			var listStart = parser.Current as SequenceStart;
+			if (listStart == null)
+			{
+				throw new InvalidOperationException (string.Format ("Reading a ComponentList out of {0}", parser.Current));
+			}
+
+			parser.MoveNext ();
+
+			var isSequenceEndEvent = (parser.Current is SequenceEnd);
+
+			while (!isSequenceEndEvent)
+			{
+				var mappingStart = parser.Current as MappingStart;
+				if (mappingStart == null)
+				{
+					throw new InvalidOperationException (string.Format ("Reading a ComponentList out of {0}", parser.Current));
+				}
+
+				parser.MoveNext ();
+
+				var scalarEntry = parser.Current as Scalar;
+				if (scalarEntry == null)
+				{
+					throw new InvalidOperationException (string.Format ("Reading a ComponentList out of {0}", parser.Current));
+				}
+
+				int typeId = 0;
+				Int32.TryParse(scalarEntry.Value, out typeId);
+
+				parser.MoveNext ();
+
+				var mappingStart2 = parser.Current as MappingStart;
+				if (mappingStart2 == null)
+				{
+					throw new InvalidOperationException (string.Format ("Reading a ComponentList out of {0}", parser.Current));
+				}
+
+				parser.MoveNext ();
+
+				var scalar1 = parser.Current as Scalar;
+				if (scalar1 == null)
+				{
+					throw new InvalidOperationException (string.Format ("Reading a ComponentList out of {0}", parser.Current));
+				}
+
+				parser.MoveNext ();
+
+				var scalar2 = parser.Current as Scalar;
+				if (scalar2 == null)
+				{
+					throw new InvalidOperationException (string.Format ("Reading a ComponentList out of {0}", parser.Current));
+				}
+
+				int refId = 0;
+				Int32.TryParse(scalar2.Value, out refId);
+
+				parser.MoveNext ();
+
+				var mappingEnd2 = parser.Current as MappingEnd;
+				if (mappingEnd2 == null)
+				{
+					throw new InvalidOperationException (string.Format ("Reading a ComponentList out of {0}", parser.Current));
+				}
+
+				parser.MoveNext ();
+
+				var mappingEnd3 = parser.Current as MappingEnd;
+				if (mappingEnd3 == null)
+				{
+					throw new InvalidOperationException (string.Format ("Reading a ComponentList out of {0}", parser.Current));
+				}
+
+				parser.MoveNext();
+
+				result.dictionary[typeId] = refId;
+
+				isSequenceEndEvent = (parser.Current is SequenceEnd);
+			}
+
+			parser.MoveNext();
+
+			//return bool.Parse (scalar.Value);
+			return result;
+		}
+
+		public void WriteYaml (IEmitter emitter, object value, Type type)
+		{
+			throw new NotImplementedException (
+				"Custom YAML writing.");
+		}
+	}
+
 	public sealed class UnityNodeDeserializer : INodeDeserializer
 	{
 		private readonly IObjectFactory _objectFactory;
@@ -234,6 +337,7 @@ namespace BosphorusLoader
 				new UnityNodeDeserializer(objectFactory, typeDescriptor, ignoreUnmatched));
 
 			deserializer.RegisterTypeConverter (new BoolConverter ());
+			deserializer.RegisterTypeConverter (new ComponentListConverter ());
 
 			foreach (var pair in tagMapping)
 			{
