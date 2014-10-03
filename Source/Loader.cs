@@ -350,8 +350,9 @@ namespace BosphorusLoader
 		public void Load (string filename)
 		{
 			var knownUnknowns = new Dictionary<string,int>();
+			var things = new List<UnityEngine.Object>();
 
-			using (var stream = File.OpenText (filename))
+			using (var stream = File.OpenText(filename))
 			{
 				var reader = new EventReader (new Parser (stream));
 				var deserializer = CreateDeserializer();
@@ -367,6 +368,8 @@ namespace BosphorusLoader
 					if (tagMapping.ContainsKey(tag))
 					{
 						var thing = deserializer.Deserialize<UnityEngine.Object> (reader);
+						thing.SetSerializationAnchor(Int32.Parse (nodeEvent.Anchor));
+						things.Add(thing);
 
 						Console.WriteLine("Deserialized: {0}", thing);
 					}
@@ -381,6 +384,11 @@ namespace BosphorusLoader
 
 					reader.Allow<DocumentEnd>();
 				}
+			}
+
+			foreach (var thing in things)
+			{
+				thing.ResolveSerializationReferences();
 			}
 
 			foreach(var pair in knownUnknowns)
